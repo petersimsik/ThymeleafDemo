@@ -1,0 +1,16 @@
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Thymeleaf demo template</title>
+    <!--
+        Spring boot will look for css file in /src/main/resources/static
+        @ is reference to context path of application
+    -->
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+    <p class="demo">
+        Time on the server is <span th:text="${theDate}"></span>
+    </p>
+</body>
+</html>
