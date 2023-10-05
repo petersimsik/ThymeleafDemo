@@ -5,6 +5,22 @@
     <title>Customer form</title>
 </head>
 <body>
-
+    <h3>Customer registration form</h3>
+    <form th:action="@{/processCustomerForm}"
+          th:object="${customer}"
+          method="post">
+        <label>First name:</label>
+        <input type="text" th:field="*{firstName}">
+        <br>
+        <label>Surname:</label>
+        <input type="text" th:field="*{surname}">
+        <br>
+            <span th:if="${#fields.hasErrors('surname')}"
+                  th:errors="*{surname}"
+                  style="color:red"
+            />
+        <br>
+        <input type="submit" value="SEND">
+    </form>
 </body>
 </html>
