@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student registration form</title>
+</head>
+<body>
+    <!--
+        form is binded with bean in model
+        *{firstName} is shortcut for {student.firstName}
+        once the form is loaded, spring will call student.getFirstName and so on
+        once the form is submitted, spring will call student.setFirstName
+    -->
+
+    <h3>Student registration form</h3>
+    <form th:action="@{/processStudentForm}" th:object="${student}" method="post">
+        <label>First name:</label>
+        <input type="text" name="firstName" th:field="*{firstName}"/>
+        <br>
+        <label>Surname:</label>
+        <input type="text" name="surname" th:field="*{surname}"/>
+        <br>
+        <label>Country:</label>
+        <!-- hard coded options
+        <select th:field="*{country}">
+            <option th:value="Slovakia">Slovakia</option>
+            <option th:value="Czechia">Czechia</option>
+            <option th:value="Poland">Poland</option>
+            <option th:value="Austria">Austria</option>
+        </select>
+        -->
+
+        <select th:field="*{country}">
+            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
+        </select>
+        <br>
+        <label>Programming language:</label>
+
+        <!-- hardcoded radio buttons
+        <input type="radio" th:field="*{language}" th:value="Go">Go</input>
+        <input type="radio" th:field="*{language}" th:value="Java">Java</input>
+        <input type="radio" th:field="*{language}" th:value="Python">Python</input>
+        -->
+
+        <input th:type="radio"
+               th:each="tempLanguage : ${languages}"
+               th:field="*{language}"
+               th:text="${tempLanguage}"
+               th:value="${tempLanguage}"/>
+        <br>
+        <label>Operating systems:</label>
+        <!-- hard coded
+        <input th:field="*{systems}" type="checkbox" th:value="Linux">Linux</input>
+        <input th:field="*{systems}" type="checkbox" th:value="Windows">Windows</input>
+        <input th:field="*{systems}" type="checkbox" th:value="MacOS">MacOS</input>
+        -->
+        <input th:field="*{systems}"
+               type="checkbox"
+               th:each="system : ${systems}" th:value="${system}" th:text="${system}"></input>
+        <br>
+        <input th:type="submit" value="SEND"/>
+    </form>
+</body>
+</html>
