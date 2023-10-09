@@ -15,10 +15,36 @@
         <label>Surname:</label>
         <input type="text" th:field="*{surname}">
         <br>
+        <label>Free passes:</label>
+        <input type="text" th:field="*{freePasses}">
+        <br>
+        <label>Zip code:</label>
+        <input type="text" th:field="*{zipCode}">
+        <br>
+        <label>Course code:</label>
+        <input type="text" th:field="*{courseCode}">
+        <br>
             <span th:if="${#fields.hasErrors('surname')}"
                   th:errors="*{surname}"
                   style="color:red"
             />
+        <br>
+        <span th:if="${#fields.hasErrors('freePasses')}"
+              th:errors="*{freePasses}"
+              style="color:red"
+        />
+        <br>
+        <br>
+        <span th:if="${#fields.hasErrors('zipCode')}"
+              th:errors="*{zipCode}"
+              style="color:red"
+        />
+        <br>
+        <br>
+        <span th:if="${#fields.hasErrors('courseCode')}"
+              th:errors="*{courseCode}"
+              style="color:red"
+        />
         <br>
         <input type="submit" value="SEND">
     </form>
